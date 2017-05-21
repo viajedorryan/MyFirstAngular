@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="myNinjaApp">
+<html lang="en" ng-app="myHokageApp">
   <head>
-    <title>TheNetNinja Angular Playlist</title>
+    <title>TheHokage Angular Playlist</title>
     <link href="content/css/styles.css" rel="stylesheet" type="text/css" />
     <script src="app\lib\angular.min.js"></script>
     <script src="app\app.js"></script>
@@ -9,12 +9,25 @@
   <body>
     <header ng-include="'header.html'"></header>
       <div class="content">
-        <div ng-controller="NinjaController">
-          <input type="text" ng-model="search" />
+        <div ng-controller="HokageController">
+          <button ng-click="order = 'name'">Order by Name</button>
+          <button ng-click="order =  'belt'">Order by Belt</button>
+          <input type="text" ng-model="search" placeholder="Search" />
           <ul>
             <!-- | means filter-->
-            <li ng-repeat="ninja in ninjas | orderBy: 'name' | filter: search" ng-show="ninja.available">{{ninja.name}} - {{ninja.rate | currency:"USD$"}}</li>
+            <li ng-repeat="hokage in hokages | orderBy: order | filter: search" ng-show="hokage.available">
+              <img ng-src="{{hokage.thumb}}" style="margin: -12px 10px 0 0; float: left; width: 50px;" ng-show="hokage.thumb"/>
+              <h3>{{hokage.name}} - {{hokage.rate | currency:"USD$"}}</h3>
+              <div class="remove" ng-click="removeHokage(hokage)">x</div>
+              <span class="belt" style="background: {{hokage.belt}}">{{hokage.belt}} belt</span>
+            </li>
           </ul>
+          <form ng-submit="addHokage()">
+            <input type="text" placeholder="name" ng-model="newhokage.name" />
+            <input type="text" placeholder="belt" ng-model="newhokage.belt" />
+            <input type="text" placeholder="rate" ng-model="newhokage.rate" />
+            <input type="submit" value="Add new hokage" />
+          </form>
         </div>
       </div>
   </body>

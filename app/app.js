@@ -1,32 +1,53 @@
- var myNinjaApp = angular.module('myNinjaApp', []);
+ var myHokageApp = angular.module('myHokageApp', []);
 
  //[function] means hold dependencies
- myNinjaApp.controller('NinjaController', ['$scope', function($scope){
+ myHokageApp.controller('HokageController', ['$scope', function($scope){
 
-     $scope.ninjas = [
+     $scope.removeHokage = function(hokage){
+         var removedHokage = $scope.hokages.indexOf(hokage);
+         $scope.hokages.splice(removedHokage, 1);
+     };
+
+     $scope.addHokage = function(){
+         $scope.hokages.push({
+             name: $scope.newhokage.name,
+             belt: $scope.newhokage.belt,
+             rate: parseInt($scope.newhokage.rate),
+             available: true
+         });
+         $scope.newhokage.name = "";
+         $scope.newhokage.belt = "";
+         $scope.newhokage.rate = "";
+     };
+
+     $scope.hokages = [
          {
-             name: "Yoshi",
+             name: "Pacres",
              belt: "blue",
              rate: 1000,
-             available: true
+             available: true,
+             thumb: "content/img/picture1.png"
          },
          {
-             name: "Crystal",
+             name: "CEO Natsss",
              belt: "red",
              rate: 50,
-             available: true
+             available: true,
+             thumb: "content/img/picture1.png"
          },
          {
-             name: "Ryu",
+             name: "CR Manager",
              belt: "yellow",
              rate: 30,
-             available: true
+             available: true,
+             thumb: "content/img/picture1.png"
          },
          {
-             name: "Ryan",
+             name: "#KhenZone",
              belt: "green",
              rate: 10,
-             available: false
+             available: true,
+             thumb: "content/img/picture1.png"
          },
      ];
 
