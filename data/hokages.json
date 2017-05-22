@@ -1,0 +1,25 @@
+[{
+	"name": "Pacres",
+	"belt": "blue",
+	"rate": 1000,
+	"available": true,
+	"thumb": "content/img/picture1.png"
+}, {
+	"name": "CEO Natsss",
+	"belt": "red",
+	"rate": 50,
+	"available": true,
+	"thumb": "content/img/picture1.png"
+}, {
+	"name": "CR Manager",
+	"belt": "yellow",
+	"rate": 30,
+	"available": true,
+	"thumb": "content/img/picture1.png"
+}, {
+	"name": "#KhenZone",
+	"belt": "green",
+	"rate": 10,
+	"available": true,
+	"thumb": "content/img/picture1.png"
+}]

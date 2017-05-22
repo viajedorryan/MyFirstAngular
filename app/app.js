@@ -1,7 +1,23 @@
- var myHokageApp = angular.module('myHokageApp', []);
+ var myHokageApp = angular.module('myHokageApp', ['ngRoute']);
+
+ myHokageApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
+
+      $routeProvider
+          .when('/home', {
+              templateUrl: 'views/home.html',
+              controller: 'HokageController'
+          })
+          .when('/directory', {
+              templateUrl: 'views/directory.html',
+              controller: 'HokageController'
+          }).otherwise({
+              redirectTo: '/home'
+          });
+
+ }]);
 
  //[function] means hold dependencies
- myHokageApp.controller('HokageController', ['$scope', function($scope){
+ myHokageApp.controller('HokageController', ['$scope', '$http', function($scope, $http){
 
      $scope.removeHokage = function(hokage){
          var removedHokage = $scope.hokages.indexOf(hokage);
@@ -20,35 +36,8 @@
          $scope.newhokage.rate = "";
      };
 
-     $scope.hokages = [
-         {
-             name: "Pacres",
-             belt: "blue",
-             rate: 1000,
-             available: true,
-             thumb: "content/img/picture1.png"
-         },
-         {
-             name: "CEO Natsss",
-             belt: "red",
-             rate: 50,
-             available: true,
-             thumb: "content/img/picture1.png"
-         },
-         {
-             name: "CR Manager",
-             belt: "yellow",
-             rate: 30,
-             available: true,
-             thumb: "content/img/picture1.png"
-         },
-         {
-             name: "#KhenZone",
-             belt: "green",
-             rate: 10,
-             available: true,
-             thumb: "content/img/picture1.png"
-         },
-     ];
+     $http.get('data/hokages.json').success(function(data){
+        $scope.hokages = data;
+     });
 
  }]);
