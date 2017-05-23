@@ -16,8 +16,22 @@
 
  }]);
 
- //[function] means hold dependencies
- myHokageApp.controller('HokageController', ['$scope', '$http', function($scope, $http){
+  myHokageApp.directive('randomHokage', [function(){
+    return {
+      restrict: 'E',
+      scope: {
+        hokages: '=',
+        title: '='
+      },
+      templateUrl: 'views/random.html',
+      controller: function($scope){
+        $scope.random = Math.floor(Math.random() * 4);
+      }
+    };
+  }]); 
+
+  //[function] means hold dependencies
+  myHokageApp.controller('HokageController', ['$scope', '$http', function($scope, $http){
 
      $scope.removeHokage = function(hokage){
          var removedHokage = $scope.hokages.indexOf(hokage);
